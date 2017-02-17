@@ -1,4 +1,6 @@
-package cn.com.chioy.bmdapptest;
+package cn.com.chioy.bmdapptest.base;
+
+import cn.com.chioy.bmdapptest.BuildConfig;
 
 /**
  * Created by zhaowh on 2017/2/16.

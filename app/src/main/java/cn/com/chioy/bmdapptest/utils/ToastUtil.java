@@ -3,7 +3,7 @@ package cn.com.chioy.bmdapptest.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import cn.com.chioy.bmdapptest.AppConfig;
+import cn.com.chioy.bmdapptest.base.AppConfig;
 
 /**
  * Created by zhaowh on 2017/2/16.
