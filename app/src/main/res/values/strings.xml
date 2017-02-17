@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BMDAppTest</string>
+    <string name="crash_toast_text">程序崩溃了</string>
 </resources>
