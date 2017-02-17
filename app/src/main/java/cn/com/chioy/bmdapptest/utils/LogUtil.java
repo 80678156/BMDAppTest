@@ -2,7 +2,8 @@ package cn.com.chioy.bmdapptest.utils;
 
 import android.util.Log;
 
-import cn.zhaowh.mytest.AppConfig;
+import cn.com.chioy.bmdapptest.base.AppConfig;
+
 
 /**
  * Created by zhaowh on 2017/2/16.
