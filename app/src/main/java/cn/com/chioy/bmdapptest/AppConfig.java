@@ -8,5 +8,5 @@ public class AppConfig {
 
     public static final boolean SHOW_TOAST = true;
     public static final boolean SHOW_LOG = BuildConfig.DEBUG;
-
+    public static final String test = "test";
 }
