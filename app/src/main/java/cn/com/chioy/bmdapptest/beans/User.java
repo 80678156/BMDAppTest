@@ -1,4 +1,4 @@
-package cn.com.chioy.bmdapptest.domain;
+package cn.com.chioy.bmdapptest.beans;
 
 /**
  * Created by zhaowh on 2017/2/17.
