@@ -61,6 +61,7 @@ public class BaseApplication extends Application {
 
     /**
      * 1、检测是否有更新文件 2、如果有，则进行热修复
+     * apkpatch -f app-release.apk -t app-old.apk -o patch -k bmd.jks -p bmdbmd -a bmdtest -e bmdbmd
      */
     private void checkAndUpdateApp() {
         //TODO 1、检测是否有更新文件 2、如果有，则进行热修复
