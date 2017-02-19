@@ -34,7 +34,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
     //acra crash
     compile 'ch.acra:acra:4.9.0'
@@ -54,6 +54,6 @@ dependencies {
     //图片缓存
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //热修复hotfix框架
-    compile 'com.alipay.euler:andfix:0.3.1@aar'
+    compile 'com.alipay.euler:andfix:0.5.0@aar'
 
 }
