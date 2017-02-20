@@ -6,4 +6,4 @@ Presenter:中间层，连接Modle和View层，同时持有Modle和View接口的�
 缺点：代码量增加，接口和文件数增加。
 与MVC模式区别：MVC模式下，Activity、Fragment等View层通常还承担着Controller的职责，需要同时负责逻辑处理和显示，代码很容易变得复杂。
 
-RxJava/RxAndroid:异步框架，简洁，随着代码逻辑越来越复杂，仍可以保持简洁，提高代码可读性和可维护性
+RxJava/RxAndroid:异步框架，简洁(逻辑性)，随着代码逻辑越来越复杂，仍可以保持简洁，提高代码可读性和可维护性

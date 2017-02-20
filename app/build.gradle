@@ -39,6 +39,7 @@ dependencies {
     //acra crash
     compile 'ch.acra:acra:4.9.0'
     //rxandroid和rxjava
+    //http://gank.io/post/560e15be2dca930e00da1083
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
     //权限处理

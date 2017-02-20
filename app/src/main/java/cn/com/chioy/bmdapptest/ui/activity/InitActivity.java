@@ -22,6 +22,7 @@ import cn.com.chioy.bmdapptest.utils.ToastUtil;
 import cn.com.chioy.bmdapptest.utils.UIUtil;
 import cn.com.chioy.bmdapptest.view.IInitView;
 import cn.com.chioy.bmdapptest.view.ILoginView;
+import io.reactivex.Observer;
 
 public class InitActivity extends AppCompatActivity implements ILoginView, IInitView{
 
@@ -42,6 +43,10 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
         mLoginPresenter = new LoginPresenterImpl(InitActivity.this, this);
 
         mInitPresenter.checkAndShowIntro(InitActivity.this);
+    }
+
+    private void requestPermission(){
+
     }
 
     @OnClick(R.id.btn_login)void login(View view){
