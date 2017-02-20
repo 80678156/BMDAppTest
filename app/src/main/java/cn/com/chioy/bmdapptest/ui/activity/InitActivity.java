@@ -22,7 +22,6 @@ import cn.com.chioy.bmdapptest.utils.ToastUtil;
 import cn.com.chioy.bmdapptest.utils.UIUtil;
 import cn.com.chioy.bmdapptest.view.IInitView;
 import cn.com.chioy.bmdapptest.view.ILoginView;
-import io.reactivex.Observer;
 
 public class InitActivity extends AppCompatActivity implements ILoginView, IInitView{
 
@@ -36,7 +35,7 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_init);
         ButterKnife.bind(this);
 
         mInitPresenter = new InitPresenterImpl(InitActivity.this, this);
