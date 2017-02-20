@@ -76,6 +76,7 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
     @Override
     public void onLoginSuccess() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override

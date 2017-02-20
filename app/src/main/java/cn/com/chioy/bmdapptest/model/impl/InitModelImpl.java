@@ -31,12 +31,17 @@ public class InitModelImpl implements IInitModel {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //TODO 请求网络，获取版本更新信息，或者从本地检测是否有增量更新包
-                UpdateInfo info = new UpdateInfo();
-                info.setForceUpdate(false);
-                info.setVersionCode(2);
-                info.setDescription("新版本描述信息：添加了新功能，fix bugs");
-                listener.onCheckUpdateDone(info);
+                try {
+                    //TODO 请求网络，获取版本更新信息，或者从本地检测是否有增量更新包
+                    UpdateInfo info = new UpdateInfo();
+                    info.setForceUpdate(false);
+                    info.setVersionCode(2);
+                    info.setDescription("新版本描述信息：添加了新功能，fix bugs");
+                    Thread.sleep(2000);
+                    listener.onCheckUpdateDone(info);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
