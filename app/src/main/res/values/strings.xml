@@ -11,4 +11,10 @@
     <string name="login_failure_type_wrong">用户名或者密码错误</string>
     <string name="login_failure_type_exception">登陆出错</string>
     <string name="login_failure_type_unKnown">登陆失败，未知错误</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_new">新版本更新</string>
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
 </resources>
