@@ -5,10 +5,10 @@ package cn.com.chioy.bmdapptest.view;
  */
 
 public interface ILoginView {
-    String getUsername();
-    String getPassword();
     void showProgress();
     void hideProgress();
-    void loginFailt();
-    void loginSuccess();
+    void hideSoftInput();
+    void showInvalidMsg(int invalidRes);
+    void onLoginFailt(int msgRes);
+    void onLoginSuccess();
 }

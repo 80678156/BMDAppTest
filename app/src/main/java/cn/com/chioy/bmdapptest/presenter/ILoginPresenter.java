@@ -5,5 +5,5 @@ package cn.com.chioy.bmdapptest.presenter;
  */
 
 public interface ILoginPresenter {
-    boolean login(String username, String password);
+    void login(String username, String password);
 }

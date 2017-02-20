@@ -1,30 +1,25 @@
 package cn.com.chioy.bmdapptest.ui.activity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.alipay.euler.andfix.patch.PatchManager;
-
-import java.io.File;
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.com.chioy.bmdapptest.R;
-import cn.com.chioy.bmdapptest.base.BaseApplication;
-import cn.com.chioy.bmdapptest.utils.LogUtil;
+import cn.com.chioy.bmdapptest.presenter.ILoginPresenter;
+import cn.com.chioy.bmdapptest.presenter.impl.LoginPresenterImpl;
 import cn.com.chioy.bmdapptest.utils.ToastUtil;
+import cn.com.chioy.bmdapptest.utils.UIUtil;
+import cn.com.chioy.bmdapptest.view.ILoginView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ILoginView{
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -34,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.edit_username) EditText mEditUsername;
     @BindView(R.id.edit_password) EditText mEditPassword;
     @BindView(R.id.btn_login) Button mBtnLogin;
+    @BindView(R.id.stub_progress) ViewStub mStubProgress;
+
+    private ILoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +39,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        //Toast.makeText(this, "lalallala", Toast.LENGTH_SHORT).show();
-        patchTest();
+        mLoginPresenter = new LoginPresenterImpl(MainActivity.this, this);
+
+        andfixTest();
     }
 
     @OnClick(R.id.btn_login)void login(View view){
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mEditPassword.getWindowToken(), 0);
-        Toast.makeText(this, "hahahhahahahah!", Toast.LENGTH_SHORT).show();
+        mLoginPresenter.login(mEditUsername.getText().toString(), mEditPassword.getText().toString());
     }
 
-    private void patchTest(){
+    private void andfixTest(){
         Log.e("ZWH", "newnewnew ");
+    }
+
+    @Override
+    public void showProgress() {
+        mStubProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        mStubProgress.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideSoftInput() {
+        UIUtil.hideSoftInput(this, mEditUsername);
+    }
+
+    @Override
+    public void showInvalidMsg(int invalidRes) {
+        ToastUtil.showLong(this, invalidRes);
+    }
+
+    @Override
+    public void onLoginFailt(int msgRes) {
+        ToastUtil.showLong(this, msgRes);
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        startActivity(new Intent(this, LoginSuccessActivity.class));
     }
 
 
