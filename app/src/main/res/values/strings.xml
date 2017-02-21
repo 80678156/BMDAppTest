@@ -17,4 +17,8 @@
     <string name="update_new">新版本更新</string>
     <string name="btn_confirm">确定</string>
     <string name="btn_cancel">取消</string>
+    <string name="download_update">正在下载更新文件</string>
+    <string name="download_msg">当前进度：</string>
+    <string name="download_error">文件下载失败</string>
+    <string name="download_finished">文件下载完成</string>
 </resources>

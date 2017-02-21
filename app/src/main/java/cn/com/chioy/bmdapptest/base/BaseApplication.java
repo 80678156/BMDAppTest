@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpHeaders;
 
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
@@ -15,8 +17,7 @@ import java.io.IOException;
 
 import cn.com.chioy.bmdapptest.BuildConfig;
 import cn.com.chioy.bmdapptest.R;
-import cn.com.chioy.bmdapptest.utils.LogUtil;
-import cn.com.chioy.bmdapptest.utils.ToastUtil;
+import cn.com.chioy.bmdapptest.arca.CustomeLogSenderFactory;
 
 import static org.acra.ReportField.ANDROID_VERSION;
 import static org.acra.ReportField.APP_VERSION_NAME;
@@ -33,6 +34,7 @@ import static org.acra.ReportField.STACK_TRACE;
         formUri = "http://192.168.0.23:8080/AppTestService/LogServlet",
         mode = ReportingInteractionMode.TOAST,
         resToastText = R.string.crash_toast_text,
+        reportSenderFactoryClasses = {CustomeLogSenderFactory.class} ,
         customReportContent = {APP_VERSION_NAME, ANDROID_VERSION, PHONE_MODEL, CUSTOM_DATA, STACK_TRACE, LOGCAT }
 )
 public class BaseApplication extends Application {
@@ -55,6 +57,18 @@ public class BaseApplication extends Application {
         mPatchManager = new PatchManager(getApplicationContext());
         mPatchManager.init(BuildConfig.VERSION_CODE+"");
         mPatchManager.loadPatch();
+
+        try {
+            //初始化OKgo
+            HttpHeaders headers = new HttpHeaders();
+            //headers.put();
+            OkGo.init(this);
+            OkGo.getInstance().addCommonHeaders(headers)
+                    .setConnectTimeout(20000)
+                    .setRetryCount(3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         checkAndUpdateApp();
     }

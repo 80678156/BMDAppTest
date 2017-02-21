@@ -1,5 +1,10 @@
 package cn.com.chioy.bmdapptest.utils;
 
+import android.util.Base64;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by zhaowh on 2017/2/17.
  */
@@ -19,5 +24,27 @@ public class TextUtil {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 加密字符串，不可逆，使用SHA-256加密，目前来说安全性相对较高
+     * @param str 需要加密的字符串
+     * @return 加密后的字符串
+     */
+    public static String encryptStr(String str){
+        if(TextUtil.isEmpty(str)){
+            return null;
+        }
+        try {
+            byte[] input = str.getBytes();
+            MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
+            shaDigest.update(input);
+            byte[] output = shaDigest.digest();
+            String result = Base64.encodeToString(output, Base64.DEFAULT);
+            return result;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

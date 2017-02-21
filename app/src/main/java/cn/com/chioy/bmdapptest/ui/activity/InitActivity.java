@@ -1,5 +1,6 @@
 package cn.com.chioy.bmdapptest.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.EditText;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,6 +103,8 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
                         .setPositiveButton(R.string.btn_confirm, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                final String url = "http://211.94.114.47/apk.r1.market.hiapk.com/data/upload/apkres/2016/11_16/12/com.xxtoutiao.xxtt_121708.apk";
+                                mInitPresenter.downloadUpdate(url);
                                 dialog.dismiss();
                             }
                         }).setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
@@ -112,6 +117,37 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
                 dialog.show();
             }
         });
+    }
+    ProgressDialog mProgressDialog = null;
+    @Override
+    public void onDownloading(long currentSize, long totalSize, float progress, long networkSpeed){
+        if(mProgressDialog==null){
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setTitle(R.string.download_update);
+            mProgressDialog.setMessage(getString(R.string.download_msg));
+            mProgressDialog.setMax(100);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+            mProgressDialog.show();
+        }else{
+            mProgressDialog.setMessage(getString(R.string.download_msg)+(int)(100*progress)+"%");
+        }
+    }
 
+    @Override
+    public void onDownloadComplete(File file) {
+        if(mProgressDialog!=null){
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
+        ToastUtil.showShort(this, R.string.download_finished);
+    }
+
+    @Override
+    public void onDownloadError(Throwable e) {
+        if(mProgressDialog!=null){
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+            ToastUtil.showShort(this, R.string.download_error);
+        }
     }
 }

@@ -9,4 +9,5 @@ import android.content.Context;
 public interface IInitPresenter {
     void checkAndShowIntro(Context context);
     void checkAndUpdate(Context context);
+    void downloadUpdate(String path);
 }

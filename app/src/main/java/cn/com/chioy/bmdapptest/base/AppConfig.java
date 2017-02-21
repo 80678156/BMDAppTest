@@ -10,4 +10,7 @@ public class AppConfig {
 
     public static final boolean SHOW_LOG = BuildConfig.DEBUG;
     public static final String test = "test";
+
+    public static final String LOG_DIR = "bmd/logs/";
+    public static final String LOG_FILE_NAME = "crash.txt";
 }
