@@ -10,6 +10,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.com.chioy.bmdapptest.R;
+import cn.com.chioy.bmdapptest.base.BaseApplication;
+import cn.com.chioy.bmdapptest.beans.User;
+import cn.com.chioy.bmdapptest.dao.UserDao;
+import cn.com.chioy.bmdapptest.utils.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.text) TextView mTextView;
@@ -25,7 +29,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_crash)void testCrash(View view){
-        throw new RuntimeException("testCrash");
+        User user = new User();
+        user.setId(10000L);
+        user.setUsername("zhangsan");
+        user.setPassword("123456");
+
+        UserDao userDao = BaseApplication.getInstances().getDaoSession().getUserDao();
+        long result = userDao.insert(user);
+        ToastUtil.showShort(this, "result:"+result);
     }
 
     @Override
