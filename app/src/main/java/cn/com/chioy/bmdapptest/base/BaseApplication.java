@@ -3,11 +3,15 @@ package cn.com.chioy.bmdapptest.base;
 import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpHeaders;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
@@ -21,6 +25,7 @@ import cn.com.chioy.bmdapptest.R;
 import cn.com.chioy.bmdapptest.arca.CustomeLogSenderFactory;
 import cn.com.chioy.bmdapptest.dao.DaoMaster;
 import cn.com.chioy.bmdapptest.dao.DaoSession;
+import cn.com.chioy.bmdapptest.utils.UIUtil;
 
 import static org.acra.ReportField.ANDROID_VERSION;
 import static org.acra.ReportField.APP_VERSION_NAME;
@@ -60,6 +65,13 @@ public class BaseApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
 
+        //初始化Bugly_Upgrade begin
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        // 安装tinker
+        Beta.installTinker();
+        //初始化Bugly_Upgrade end
+
         //初始化ACRA框架
         ACRA.init(this);
     }
@@ -68,6 +80,9 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instances = this;
+
+        //初始化Bugly_Upgrade
+        initBuglyAndUpgrade();
 
         //初始化Andfix
         Log.e("ZWH","application onCreate!!!!");
@@ -107,6 +122,17 @@ public class BaseApplication extends Application {
 
     public SQLiteDatabase getDb() {
         return db;
+    }
+
+    private void initBuglyAndUpgrade(){
+        Context context = getApplicationContext();
+        String packageName = context.getPackageName();
+        String processName = UIUtil.getProcessName(android.os.Process.myPid());
+        // 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        // 初始化crashreport_upgrade
+        Bugly.init(context, AppConfig.BUGLY_APP_ID, false, strategy);
     }
 
     /**

@@ -8,6 +8,11 @@ Presenter:中间层，连接Modle和View层，同时持有Modle和View接口的�
 
 RxJava/RxAndroid:异步框架，简洁(逻辑性)，随着代码逻辑越来越复杂，仍可以保持简洁，提高代码可读性和可维护性
 
+http://blog.csdn.net/Tencent_Bugly/article/details/51354693
+EventBus Android 发布/订阅事件总线，可简化 Activities, Fragments, Threads, Services 等组件间的消息传递，可替代 Intent, Handler, BroadCast ，接口等传统方案，
+在实际项目的使用中，register和unregister通常与Activity和Fragment的生命周期相关，ThreadMode.MainThread可以很好地解决Android的界面刷新必须在UI线程的问题，
+不需要再回调后用Handler中转（EventBus中已经自动用Handler做了处理），
+黏性事件可以很好地解决post与register同时执行时的异步问题（这个在原理中会说到），事件的传递也没有序列化与反序列化的性能消耗，足以满足我们大部分情况下的模块间通信需求。
 
 
 
@@ -21,7 +26,6 @@ Android端 AES+RSA结合实践
 基本流程
 
 Android端
-
 服务器端(server)分别生成自己的RSA密钥对,并提供接口给Android客户端获取RSA公钥(rsaPublicKey)
 client生成AES密钥(aesKey)
 client使用自己的AES密钥(aesKey)对转换为json格式的请求明文数据(data)进行加密，得到加密后的请求数据encryptData

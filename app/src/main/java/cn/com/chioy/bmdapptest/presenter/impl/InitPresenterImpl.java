@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.io.File;
 
-import cn.com.chioy.bmdapptest.beans.UpdateInfo;
+import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 import cn.com.chioy.bmdapptest.model.IInitModel;
 import cn.com.chioy.bmdapptest.model.impl.InitModelImpl;
 import cn.com.chioy.bmdapptest.presenter.IInitPresenter;
@@ -47,12 +47,12 @@ public class InitPresenterImpl implements IInitPresenter, IInitModel.OnCheckedLi
         if(showIntro){
             mInitView.showIntro();
         }else{
-            mInitModel.checkAndUpdate(mContext, this);
+            //mInitModel.checkAndUpdate(mContext, this);
         }
     }
 
     @Override
-    public void onCheckUpdateDone(UpdateInfo info) {
+    public void onCheckUpdateDone(UpgradeInfo info) {
         mInitView.showUpdateDialog(info);
     }
 

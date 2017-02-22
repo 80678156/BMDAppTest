@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.io.File;
 
-import cn.com.chioy.bmdapptest.beans.UpdateInfo;
+import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 
 /**
  * Created by zhaowh on 2017/2/20.
@@ -17,7 +17,7 @@ public interface IInitModel {
 
     interface OnCheckedListener{
         void onCheckIntroDone(boolean showIntro);
-        void onCheckUpdateDone(UpdateInfo info);
+        void onCheckUpdateDone(UpgradeInfo info);
     }
     interface OnDownloadListener{
         void onDownloading(long currentSize, long totalSize, float progress, long networkSpeed);

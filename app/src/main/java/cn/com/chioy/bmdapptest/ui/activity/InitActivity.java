@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.com.chioy.bmdapptest.R;
-import cn.com.chioy.bmdapptest.beans.UpdateInfo;
+import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 import cn.com.chioy.bmdapptest.presenter.IInitPresenter;
 import cn.com.chioy.bmdapptest.presenter.ILoginPresenter;
 import cn.com.chioy.bmdapptest.presenter.impl.InitPresenterImpl;
@@ -52,7 +52,8 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
     }
 
     @OnClick(R.id.btn_login)void login(View view){
-        mLoginPresenter.login(mEditUsername.getText().toString(), mEditPassword.getText().toString());
+        onLoginSuccess();
+        //mLoginPresenter.login(mEditUsername.getText().toString(), mEditPassword.getText().toString());
     }
 
     @Override
@@ -92,7 +93,7 @@ public class InitActivity extends AppCompatActivity implements ILoginView, IInit
     }
 
     @Override
-    public void showUpdateDialog(final UpdateInfo info) {
+    public void showUpdateDialog(final UpgradeInfo info) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

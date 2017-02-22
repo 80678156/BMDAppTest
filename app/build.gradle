@@ -1,14 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'chioy'
+            keyPassword 'chioy123456'
+            storeFile file('D:/android/key/chioy-apk.jks')
+            storePassword 'chioy123456'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "cn.com.chioy.bmdapptest"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "test0.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -20,6 +28,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     externalNativeBuild {
@@ -28,7 +37,29 @@ android {
         }
     }
 }
-//GreenDao配置开始
+//tencent crashreport_upgrade begin
+android {
+    defaultConfig {
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+}
+apply plugin: 'bugly'
+apply from: 'tinker-support.gradle'
+bugly {
+    appId = "5ff25a4cbf"
+    appKey = "d032a2ce-c9d3-40d1-83ac-fdb31e276c7c"
+}
+dependencies {
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    //compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+}
+//tencent crashreport_upgrade end
+//GreenDao and plugin begin
 buildscript {
     repositories {
         mavenCentral()
@@ -46,7 +77,24 @@ greendao {
     daoPackage 'cn.com.chioy.bmdapptest.dao'
     targetGenDir 'src/main/java'
 }
-//GreenDao配置结束
+//GreenDao and plugin end
+//EventBus plugin begin
+/*buildscript {
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+apply plugin: 'com.neenbedankt.android-apt'
+apt {
+    arguments {
+        eventBusIndex "cn.com.chioy.bmdapptest.eventbusindex"
+    }
+}
+dependencies {
+    compile 'org.greenrobot:eventbus:3.0.0'//EventBus
+    apt 'org.greenrobot:eventbus-annotation-processor:3.0.1'
+}*/
+//Eventbus plugin end
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,27 +103,23 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    //acra crash
-    compile 'ch.acra:acra:4.9.0'
+
     //rxandroid和rxjava
     //http://gank.io/post/560e15be2dca930e00da1083
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    //权限处理
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.1@aar'
 
-    //http-okgo
-    compile 'com.lzy.net:okgo:2.1.4'        //可以单独使用，不需要依赖下方的扩展包
-    //compile 'com.lzy.net:okrx:0.1.2'        //RxJava扩展支持，根据需要添加
-    compile 'com.lzy.net:okserver:1.1.3'    //下载管理和上传管理扩展，根据需要添加
-    //view注解
-    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'ch.acra:acra:4.9.0'//acra crash
+    compile 'com.lzy.net:okgo:2.1.4'        //okgo 可以单独使用，不需要依赖下方的扩展包
+    //compile 'com.lzy.net:okrx:0.1.2'        //okgo Rxjava扩展，不兼容Rxjava2
+    compile 'com.lzy.net:okserver:1.1.3'    //okgo 下载管理和上传管理扩展，根据需要添加
+    compile 'com.jakewharton:butterknife:8.5.1'//view注解
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    //图片缓存
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    //热修复hotfix框架
-    compile 'com.alipay.euler:andfix:0.5.0@aar'
-    //Intro
-    compile 'com.github.paolorotolo:appintro:4.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'//图片缓存
+    compile 'com.alipay.euler:andfix:0.5.0@aar'//热修复andfix框架
+    compile 'org.greenrobot:eventbus:3.0.0'//EventBus
+
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.1@aar'//权限处理
+    compile 'com.github.paolorotolo:appintro:4.1.0'//Intro
 
 }

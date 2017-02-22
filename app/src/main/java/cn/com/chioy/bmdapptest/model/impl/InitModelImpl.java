@@ -8,7 +8,7 @@ import com.lzy.okgo.callback.FileCallback;
 
 import java.io.File;
 
-import cn.com.chioy.bmdapptest.beans.UpdateInfo;
+import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 import cn.com.chioy.bmdapptest.model.IInitModel;
 import cn.com.chioy.bmdapptest.utils.AppConstant;
 import cn.com.chioy.bmdapptest.utils.SPUtil;
@@ -42,12 +42,12 @@ public class InitModelImpl implements IInitModel {
 
     @Override
     public void checkAndUpdate(Context context, final OnCheckedListener listener) {
-        Observable.create(new ObservableOnSubscribe<UpdateInfo>() {
+        Observable.create(new ObservableOnSubscribe<UpgradeInfo>() {
             @Override
-            public void subscribe(ObservableEmitter<UpdateInfo> e) throws Exception {
+            public void subscribe(ObservableEmitter<UpgradeInfo> e) throws Exception {
                 //TODO 请求网络，获取版本更新信息，或者从本地检测是否有增量更新包
                 try {
-                    UpdateInfo info = new UpdateInfo();
+                    UpgradeInfo info = new UpgradeInfo();
                     info.setForceUpdate(false);
                     info.setVersionCode(2);
                     info.setDescription("新版本描述信息：添加了新功能，fix bugs");
@@ -60,13 +60,13 @@ public class InitModelImpl implements IInitModel {
             }
         }).subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Observer<UpdateInfo>() {
+        .subscribe(new Observer<UpgradeInfo>() {
             @Override
             public void onSubscribe(Disposable d) {
             }
 
             @Override
-            public void onNext(UpdateInfo value) {
+            public void onNext(UpgradeInfo value) {
                 listener.onCheckUpdateDone(value);
             }
 

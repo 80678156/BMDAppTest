@@ -8,6 +8,8 @@ import cn.com.chioy.bmdapptest.BuildConfig;
 
 public class AppConfig {
 
+    public static final String BUGLY_APP_ID = "5ff25a4cbf";
+
     public static final boolean SHOW_LOG = BuildConfig.DEBUG;
     public static final String test = "test";
 
