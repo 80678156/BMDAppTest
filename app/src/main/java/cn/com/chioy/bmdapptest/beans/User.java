@@ -5,7 +5,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ *
  */
 @Entity
 public class User {
