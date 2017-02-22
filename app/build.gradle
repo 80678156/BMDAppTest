@@ -62,7 +62,8 @@ dependencies {
 //GreenDao and plugin begin
 buildscript {
     repositories {
-        mavenCentral()
+        //mavenCentral()
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/central'}
     }
     dependencies {
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
