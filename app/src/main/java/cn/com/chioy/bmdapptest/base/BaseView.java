@@ -1,7 +1,9 @@
 package cn.com.chioy.bmdapptest.base;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ *
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
 public interface BaseView {

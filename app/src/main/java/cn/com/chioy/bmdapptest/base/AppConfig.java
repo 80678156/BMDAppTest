@@ -1,17 +1,19 @@
 package cn.com.chioy.bmdapptest.base;
 
 /**
- * Created by zhaowh on 2017/2/16.
+ * App相关配置
+ * @author zhaowh
+ * @Date 2017/2/23
  */
-
 public class AppConfig {
 
     public static final String BUGLY_APP_ID = "5ff25a4cbf";
     /** 是否打印Log信息*/
     public static final boolean SHOW_LOG = true;
-    public static final String test = "test";
 
+    /**本地Log存放目录*/
     public static final String LOG_DIR = "bmd/logs/";
+    /**本地Log文件名称*/
     public static final String LOG_FILE_NAME = "crash.txt";
 
     /** 是否开启自动检测升级*/

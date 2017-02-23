@@ -17,7 +17,11 @@ package cn.com.chioy.bmdapptest.beans;
  public long fileSize;//APK文件的大小
  pubilc String imageUrl; // 图片url
  */
-
+/**
+ * App更新信息实体类
+ * @author zhaowh
+ * @Date 2017/2/23
+ */
 public class UpgradeInfo {
     public static final int TYPE_FIX = 0x01;
     public static final int TYPE_UPDATE = 0x02;

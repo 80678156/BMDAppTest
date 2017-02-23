@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ * 基础的Activity类，可以在本类中添加通用的功能
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
 public class BaseActivity extends AppCompatActivity {
