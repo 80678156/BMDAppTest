@@ -9,7 +9,10 @@ import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
 
 /**
- * Created by zhaowh on 2017/2/21.
+ * 自定义Log收集方式
+ * @author zhaowh
+ * @Date 2017/2/23
+ * @Update
  */
 
 public class CustomeLogSenderFactory implements ReportSenderFactory {

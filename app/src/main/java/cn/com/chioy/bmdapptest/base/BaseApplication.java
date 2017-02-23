@@ -30,9 +30,7 @@ import static org.acra.ReportField.LOGCAT;
 import static org.acra.ReportField.PHONE_MODEL;
 import static org.acra.ReportField.STACK_TRACE;
 
-/**
- * Created by zhaowh on 2017/2/16.
- */
+
 //ACRA log文件上传接口URI
 @ReportsCrashes(
         formUri = "http://192.168.0.23:8080/AppTestService/LogServlet",
@@ -41,6 +39,11 @@ import static org.acra.ReportField.STACK_TRACE;
         reportSenderFactoryClasses = {CustomeLogSenderFactory.class} ,
         customReportContent = {APP_VERSION_NAME, ANDROID_VERSION, PHONE_MODEL, CUSTOM_DATA, STACK_TRACE, LOGCAT }
 )
+/**
+ * 自定义Application，完成软件初始化功能
+ * @author zhaowh
+ * @Date 2017/2/23
+ */
 public class BaseApplication extends Application {
     public static BaseApplication instances;
 
@@ -122,6 +125,9 @@ public class BaseApplication extends Application {
         return db;
     }
 
+    /**
+     * 初始化crashreport_upgrade
+     */
     private void initBuglyAndUpgrade(){
         Context context = getApplicationContext();
         String packageName = context.getPackageName();
@@ -131,6 +137,10 @@ public class BaseApplication extends Application {
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
         // 初始化crashreport_upgrade
         Bugly.init(context, AppConfig.BUGLY_APP_ID, false, strategy);
+
+        Beta.autoCheckUpgrade = AppConfig.AUTO_CHECK_UPGRADE;
+        Beta.autoDownloadOnWifi = AppConfig.AUTO_DOWNLOAD_ON_WIFI;
+        Beta.enableHotfix = AppConfig.ENABLE_HOT_FIX;
     }
 
     /**

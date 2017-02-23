@@ -25,7 +25,9 @@ import cn.com.chioy.bmdapptest.base.AppConfig;
 import cn.com.chioy.bmdapptest.utils.LogUtil;
 
 /**
- * Created by zhaowh on 2017/2/21.
+ * 自定义Log收集方式，
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
 public class CustomeLogSender extends HttpSender {

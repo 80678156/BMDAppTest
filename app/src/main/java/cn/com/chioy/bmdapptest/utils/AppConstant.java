@@ -5,6 +5,7 @@ package cn.com.chioy.bmdapptest.utils;
  */
 
 public class AppConstant {
+
     private AppConstant(){}
 
     /**SharedPreferences key define*/

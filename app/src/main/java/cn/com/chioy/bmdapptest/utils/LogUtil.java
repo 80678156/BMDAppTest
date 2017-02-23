@@ -2,6 +2,8 @@ package cn.com.chioy.bmdapptest.utils;
 
 import android.util.Log;
 
+import com.tencent.bugly.crashreport.BuglyLog;
+
 import cn.com.chioy.bmdapptest.base.AppConfig;
 
 
@@ -18,7 +20,7 @@ public class LogUtil {
         /* Protect from instantiations */
     }
 
-    public static boolean isDebuggable() {
+    public static boolean showLog() {
         return AppConfig.SHOW_LOG;
     }
 
@@ -43,7 +45,7 @@ public class LogUtil {
 
 
     public static void e(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         // Throwable instance must be created before any methods
@@ -53,7 +55,7 @@ public class LogUtil {
 
 
     public static void i(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         getMethodNames(new Throwable().getStackTrace());
@@ -61,7 +63,7 @@ public class LogUtil {
     }
 
     public static void d(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         getMethodNames(new Throwable().getStackTrace());
@@ -69,7 +71,7 @@ public class LogUtil {
     }
 
     public static void v(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         getMethodNames(new Throwable().getStackTrace());
@@ -77,7 +79,7 @@ public class LogUtil {
     }
 
     public static void w(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         getMethodNames(new Throwable().getStackTrace());
@@ -85,10 +87,141 @@ public class LogUtil {
     }
 
     public static void wtf(String message){
-        if (!isDebuggable())
+        if (!showLog())
             return;
 
         getMethodNames(new Throwable().getStackTrace());
         Log.wtf(className, createLog(message));
+    }
+    public static void e(String tag, String message){
+        if (!showLog())
+            return;
+
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        Log.e(tag, createLog(message));
+    }
+
+
+    public static void i(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.i(tag, createLog(message));
+    }
+
+    public static void d(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.d(tag, createLog(message));
+    }
+
+    public static void v(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.v(tag, createLog(message));
+    }
+
+    public static void w(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.w(tag, createLog(message));
+    }
+
+    public static void wtf(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.wtf(tag, createLog(message));
+    }
+    public static void reportE(String message){
+        if (!showLog())
+            return;
+
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.e(className, createLog(message));
+    }
+
+
+    public static void reportI(String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.i(className, createLog(message));
+    }
+
+    public static void reportD(String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.d(className, createLog(message));
+    }
+
+    public static void reportV(String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.v(className, createLog(message));
+    }
+
+    public static void reportW(String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.w(className, createLog(message));
+    }
+    public static void reportE(String tag, String message){
+        if (!showLog())
+            return;
+
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.e(tag, createLog(message));
+    }
+
+
+    public static void reportI(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.i(tag, createLog(message));
+    }
+
+    public static void reportD(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.d(tag, createLog(message));
+    }
+
+    public static void reportV(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.v(tag, createLog(message));
+    }
+
+    public static void reportW(String tag, String message){
+        if (!showLog())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        BuglyLog.w(tag, createLog(message));
     }
 }

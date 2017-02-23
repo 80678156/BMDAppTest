@@ -1,4 +1,5 @@
 MVP:
+在Android开发中，Activity并不是一个标准的MVC模式中的Controller，它 的首要职责是加载应用的布局和初始化用户界面，并接受并处理来自用户的操作请求，进而作出响应。随着界面及其逻辑的复杂度不断提升，Activity类的 职责不断增加，以致变得庞大臃肿。
 Modle:数据、逻辑操作层，负责网络操作，数据库操作，文件操作等耗时操作。
 View:界面展示层，负责界面展示，具体表现为Activity、Fragment、自定义View等
 Presenter:中间层，连接Modle和View层，同时持有Modle和View接口的引用。
