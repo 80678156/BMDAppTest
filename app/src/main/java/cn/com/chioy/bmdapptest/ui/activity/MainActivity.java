@@ -12,6 +12,7 @@ import butterknife.OnClick;
 import cn.com.chioy.bmdapptest.R;
 
 public class MainActivity extends AppCompatActivity {
+
     @BindView(R.id.text) TextView mTextView;
 
     @Override
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mTextView.setText("热更新成功。");
+
     }
 
     @OnClick(R.id.btn_crash)void testCrash(View view){
@@ -30,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }
 

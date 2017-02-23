@@ -117,10 +117,14 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'//view注解
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'//图片缓存
-    compile 'com.alipay.euler:andfix:0.5.0@aar'//热修复andfix框架
+    //compile 'com.alipay.euler:andfix:0.5.0@aar'//热修复andfix框架,使用bugly项目的tinker来代替
     compile 'org.greenrobot:eventbus:3.0.0'//EventBus
 
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.1@aar'//权限处理
     compile 'com.github.paolorotolo:appintro:4.1.0'//Intro
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5' //leakcanary OOM 监测
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
 }

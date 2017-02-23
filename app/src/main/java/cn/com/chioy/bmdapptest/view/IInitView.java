@@ -5,10 +5,12 @@ import java.io.File;
 import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ * 初始化界面接口View
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
-public interface IInitView {
+public interface IInitView extends IBaseView{
     void showIntro();
     void showUpdateDialog(UpgradeInfo info);
 

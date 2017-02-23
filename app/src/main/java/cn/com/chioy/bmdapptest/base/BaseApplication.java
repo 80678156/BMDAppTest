@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import com.alipay.euler.andfix.patch.PatchManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.HttpHeaders;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -17,10 +17,6 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
-import java.io.File;
-import java.io.IOException;
-
-import cn.com.chioy.bmdapptest.BuildConfig;
 import cn.com.chioy.bmdapptest.R;
 import cn.com.chioy.bmdapptest.arca.CustomeLogSenderFactory;
 import cn.com.chioy.bmdapptest.dao.DaoMaster;
@@ -49,7 +45,7 @@ public class BaseApplication extends Application {
     public static BaseApplication instances;
 
     //Andfix PatchManager初始化
-    private PatchManager mPatchManager;
+    //private PatchManager mPatchManager;
 
     //初始化GreenDao，需要先创建Entity重新编译，GreenDao会自动生成DaoMaster和DaoSession
     private DaoMaster.DevOpenHelper mHelper;
@@ -84,17 +80,19 @@ public class BaseApplication extends Application {
         //初始化Bugly_Upgrade
         initBuglyAndUpgrade();
 
-        //初始化Andfix
         Log.e("ZWH","application onCreate!!!!");
+        /*//初始化Andfix热修复， 使用bugly项目的tinker代替
         mPatchManager = new PatchManager(getApplicationContext());
         mPatchManager.init(BuildConfig.VERSION_CODE+"");
-        mPatchManager.loadPatch();
+        mPatchManager.loadPatch();*/
 
-        //初始化GreenDao，需要先创建Entity重新编译，GreenDao会自动生成DaoMaster和DaoSession
-        // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
-        // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。
-        // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。
-        // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。
+        //初始化LeakCanary
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
+
+        //初始化GreenDao
         mHelper = new DaoMaster.DevOpenHelper(this, "notes-db", null);
         db = mHelper.getWritableDatabase();
         // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
@@ -113,7 +111,7 @@ public class BaseApplication extends Application {
             e.printStackTrace();
         }
 
-        checkAndUpdateApp();
+
     }
 
     public DaoSession getDaoSession() {
@@ -139,7 +137,7 @@ public class BaseApplication extends Application {
      * 1、检测是否有更新文件 2、如果有，则进行热修复
      * apkpatch -f app-release.apk -t app-old.apk -o patch -k bmd.jks -p bmdbmd -a bmdtest -e bmdbmd
      */
-    private void checkAndUpdateApp() {
+    /*private void checkAndUpdateApp() {
         //TODO 1、检测是否有更新文件 2、如果有，则进行热修复
         try {
             //String sdcardDir = Environment.getExternalStorageDirectory().toString();
@@ -159,6 +157,5 @@ public class BaseApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
+    }*/
 }

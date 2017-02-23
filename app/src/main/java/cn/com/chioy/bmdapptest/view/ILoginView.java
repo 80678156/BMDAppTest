@@ -1,10 +1,12 @@
 package cn.com.chioy.bmdapptest.view;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ * 登陆界面接口View
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
-public interface ILoginView {
+public interface ILoginView extends IBaseView {
     void showProgress();
     void hideProgress();
     void hideSoftInput();

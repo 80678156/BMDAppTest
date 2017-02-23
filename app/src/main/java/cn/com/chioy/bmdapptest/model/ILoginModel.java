@@ -3,10 +3,12 @@ package cn.com.chioy.bmdapptest.model;
 import cn.com.chioy.bmdapptest.model.impl.LoginModelImpl;
 
 /**
- * Created by zhaowh on 2017/2/17.
+ * 提供User Login功能相关数据处理
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
-public interface ILoginModel {
+public interface ILoginModel extends IBaseModel{
     void login(String username, String password,  LoginModelImpl.OnLoginListener listener);
 
     interface OnLoginListener{

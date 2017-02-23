@@ -7,10 +7,12 @@ import java.io.File;
 import cn.com.chioy.bmdapptest.beans.UpgradeInfo;
 
 /**
- * Created by zhaowh on 2017/2/20.
+ * 提供初始化界面相关数据处理Model
+ * @author zhaowh
+ * @Date 2017/2/23
  */
 
-public interface IInitModel {
+public interface IInitModel extends IBaseModel{
     void checkAndShowIntro(Context context, OnCheckedListener listener);
     void checkAndUpdate(Context context, OnCheckedListener listener);
     void downloadUpdate(String path, OnDownloadListener listener);
